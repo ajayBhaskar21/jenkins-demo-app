@@ -2,8 +2,12 @@ pipeline {
     agent any
 
     tools {
-        // This ensures Node.js is available on your Jenkins execution path
         nodejs 'node' 
+    }
+
+    // Setting the environment variable here makes it cross-platform
+    environment {
+        NODE_ENV = 'test'
     }
 
     stages {
@@ -20,7 +24,7 @@ pipeline {
                 echo 'Installing Backend dependencies and running tests...'
                 dir('backend') {
                     bat 'npm install'
-                    bat 'NODE_ENV=test npm test'
+                    bat 'npm test' // Uses the NODE_ENV defined above
                 }
             }
         }
