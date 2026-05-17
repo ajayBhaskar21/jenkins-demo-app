@@ -10,8 +10,8 @@ pipeline {
         stage('Initialize') {
             steps {
                 echo 'Checking software environments...'
-                sh 'node --version'
-                sh 'npm --version'
+                bat 'node --version'
+                bat 'npm --version'
             }
         }
 
@@ -19,8 +19,8 @@ pipeline {
             steps {
                 echo 'Installing Backend dependencies and running tests...'
                 dir('backend') {
-                    sh 'npm install'
-                    sh 'NODE_ENV=test npm test'
+                    bat 'npm install'
+                    bat 'NODE_ENV=test npm test'
                 }
             }
         }
@@ -29,9 +29,9 @@ pipeline {
             steps {
                 echo 'Installing Frontend dependencies, testing, and packaging...'
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run test'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run test'
+                    bat 'npm run build'
                 }
             }
         }
